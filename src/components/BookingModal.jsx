@@ -399,7 +399,8 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
         }
 
         // Reschedule existing appointment using dedicated reschedule endpoint
-        response = await fetch(`http://localhost:5000/api/appointments/${rescheduleData.appointmentId}/reschedule`, {
+        const baseUrl = import.meta.env.VITE_API_URL
+        response = await fetch(`${baseUrl}/appointments/${rescheduleData.appointmentId}/reschedule`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -420,7 +421,8 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
         }
 
         // Create new appointment
-        response = await fetch('http://localhost:5000/api/appointments', {
+        const baseUrl = import.meta.env.VITE_API_URL
+        response = await fetch(`${baseUrl}/appointments`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
