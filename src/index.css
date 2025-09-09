@@ -1,0 +1,586 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Ubuntu', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Flos Exact Color Palette - Green Theme */
+  --primary-color: #4a6741;
+  --primary-hover: #3d5436;
+  --primary-light: #5a7a4f;
+  --primary-gradient: linear-gradient(135deg, #4a6741, #3d5436);
+  --secondary-color: #6b8e5a;
+  --secondary-hover: #5a7a4f;
+  --accent-color: #8fbc8f;
+  --accent-hover: #7ba77b;
+
+  /* Flos Green Tones */
+  --forest-green: #2d4a2b;
+  --sage-green: #87a987;
+  --mint-green: #b8d4b8;
+  --light-green: #e8f5e8;
+  --dark-green: #1e3a1c;
+
+  /* Status Colors - WCAG Compliant */
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  --warning-color: #fd7e14;
+  --warning-hover: #e8650e;
+  --success-color: #28a745;
+  --success-hover: #218838;
+  --info-color: #17a2b8;
+  --info-hover: #138496;
+
+  /* Button System Colors - UX Optimized */
+  --btn-primary-bg: var(--primary-color);
+  --btn-primary-hover: var(--primary-hover);
+  --btn-secondary-bg: var(--secondary-color);
+  --btn-secondary-hover: var(--secondary-hover);
+  --btn-outline-border: var(--primary-color);
+  --btn-outline-hover-bg: var(--primary-color);
+  --btn-back-bg: #6c757d;
+  --btn-back-hover: #5a6268;
+  --btn-disabled-bg: #e9ecef;
+  --btn-disabled-text: #6c757d;
+
+  /* Flos Text & Background Colors - Improved Contrast */
+  --dark-color: #1a2e1a;
+  --text-color: #1a2e1a;
+  --text-primary: #1a2e1a;
+  --text-secondary: #2d4a2b;
+  --light-text: #4a6741;
+  --text-muted: #6b8e5a;
+  --border-color: #d1e7dd;
+  --border-light: #e8f5e8;
+  --light-bg: #f8fdf8;
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafcfa;
+  --bg-tertiary: #f0f8f0;
+  --white: #ffffff;
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --card-bg: #ffffff;
+  --shadow-color: rgba(74, 103, 65, 0.15);
+
+  /* Flos Shadow Variables - Green Theme */
+  --shadow-sm: 0 2px 8px rgba(74, 103, 65, 0.15);
+  --shadow-md: 0 4px 16px rgba(74, 103, 65, 0.2);
+  --shadow-lg: 0 8px 24px rgba(74, 103, 65, 0.25);
+  --shadow-xl: 0 16px 40px rgba(74, 103, 65, 0.3);
+  --shadow-glow: 0 0 20px rgba(74, 103, 65, 0.4);
+  --shadow-hover: 0 8px 32px rgba(74, 103, 65, 0.35);
+
+  /* Border Radius Variables */
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-2xl: 20px;
+
+  /* Transition Variables */
+  --transition-fast: 0.15s ease-out;
+  --transition-normal: 0.3s ease-out;
+  --transition-slow: 0.5s ease-out;
+
+  /* Mobile Typography Scale */
+  --mobile-font-xs: 0.75rem;    /* 12px */
+  --mobile-font-sm: 0.875rem;   /* 14px */
+  --mobile-font-base: 1rem;     /* 16px */
+  --mobile-font-lg: 1.125rem;   /* 18px */
+  --mobile-font-xl: 1.25rem;    /* 20px */
+  --mobile-font-2xl: 1.5rem;    /* 24px */
+  --mobile-font-3xl: 1.875rem;  /* 30px */
+  --mobile-font-4xl: 2.25rem;   /* 36px */
+
+  /* Mobile Line Heights */
+  --mobile-leading-tight: 1.25;
+  --mobile-leading-normal: 1.5;
+  --mobile-leading-relaxed: 1.75;
+
+  /* Mobile Spacing Scale */
+  --mobile-space-1: 0.25rem;    /* 4px */
+  --mobile-space-2: 0.5rem;     /* 8px */
+  --mobile-space-3: 0.75rem;    /* 12px */
+  --mobile-space-4: 1rem;       /* 16px */
+  --mobile-space-5: 1.25rem;    /* 20px */
+  --mobile-space-6: 1.5rem;     /* 24px */
+  --mobile-space-8: 2rem;       /* 32px */
+  --mobile-space-10: 2.5rem;    /* 40px */
+  --mobile-space-12: 3rem;      /* 48px */
+  --mobile-space-16: 4rem;      /* 64px */
+
+  /* Mobile Touch Targets */
+  --mobile-touch-min: 44px;     /* Minimum touch target size */
+  --mobile-touch-comfortable: 48px; /* Comfortable touch target */
+
+  /* Responsive Breakpoints */
+  --breakpoint-xs: 320px;       /* Extra small devices */
+  --breakpoint-sm: 480px;       /* Small devices */
+  --breakpoint-md: 768px;       /* Medium devices (tablets) */
+  --breakpoint-lg: 1024px;      /* Large devices (laptops) */
+  --breakpoint-xl: 1280px;      /* Extra large devices (desktops) */
+  --breakpoint-2xl: 1536px;     /* 2X large devices (large desktops) */
+
+  /* Container Max Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+}
+
+/* Light Theme Icon Support */
+[data-theme="light"] {
+  /* Default dark icons for light backgrounds */
+  --icon-color: #374151;
+  --icon-hover-color: #1f2937;
+
+  /* Light Mode Text Visibility Fixes */
+  /* Ensure any element with dark/primary backgrounds has proper text color */
+  --primary-text-color: var(--white);
+  --dark-bg-text-color: var(--white);
+}
+
+/* Light Mode - Comprehensive Text Visibility Fixes */
+[data-theme="light"] .bg-primary,
+[data-theme="light"] .primary-bg,
+[data-theme="light"] [style*="background: #4a6741"],
+[data-theme="light"] [style*="background-color: #4a6741"],
+[data-theme="light"] [style*="background: var(--primary-color)"],
+[data-theme="light"] [style*="background-color: var(--primary-color)"] {
+  color: var(--white) !important;
+}
+
+[data-theme="light"] .bg-primary *,
+[data-theme="light"] .primary-bg *,
+[data-theme="light"] [style*="background: #4a6741"] *,
+[data-theme="light"] [style*="background-color: #4a6741"] *,
+[data-theme="light"] [style*="background: var(--primary-color)"] *,
+[data-theme="light"] [style*="background-color: var(--primary-color)"] * {
+  color: var(--white) !important;
+}
+
+/* Light Mode - Dark background elements should have white text */
+[data-theme="light"] .bg-dark,
+[data-theme="light"] .dark-bg,
+[data-theme="light"] [style*="background: #1a2e1a"],
+[data-theme="light"] [style*="background-color: #1a2e1a"],
+[data-theme="light"] [style*="background: #2d4a2b"],
+[data-theme="light"] [style*="background-color: #2d4a2b"] {
+  color: var(--white) !important;
+}
+
+[data-theme="light"] .bg-dark *,
+[data-theme="light"] .dark-bg *,
+[data-theme="light"] [style*="background: #1a2e1a"] *,
+[data-theme="light"] [style*="background-color: #1a2e1a"] *,
+[data-theme="light"] [style*="background: #2d4a2b"] *,
+[data-theme="light"] [style*="background-color: #2d4a2b"] * {
+  color: var(--white) !important;
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Override colors for dark theme - Improved Contrast */
+  --dark-color: #ffffff;
+  --text-color: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --light-text: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-color: #475569;
+  --border-light: #64748b;
+  --light-bg: #334155;
+  --bg-primary: #1e293b;
+  --bg-secondary: #0f172a;
+  --bg-tertiary: #334155;
+  --white: #ffffff;
+  --header-bg: rgba(30, 41, 59, 0.95);
+  --card-bg: #1e293b;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+
+  /* Dark theme icon colors */
+  --icon-color: #e2e8f0;
+  --icon-hover-color: #f1f5f9;
+
+  /* Adjust primary colors for dark theme - Better Visibility */
+  --primary-color: #7ba77b;
+  --primary-hover: #8fbc8f;
+  --primary-light: #a3d4a3;
+  --secondary-color: #8fbc8f;
+  --secondary-hover: #a3d4a3;
+  --accent-color: #b8d4b8;
+  --accent-hover: #c8e6c8;
+
+  /* Dark theme shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 20px rgba(90, 122, 79, 0.4);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  /* Dark theme button colors - UX Optimized */
+  --btn-primary-bg: var(--primary-color);
+  --btn-primary-hover: var(--primary-hover);
+  --btn-secondary-bg: var(--secondary-color);
+  --btn-secondary-hover: var(--secondary-hover);
+  --btn-back-bg: #64748b;
+  --btn-back-hover: #475569;
+  --btn-disabled-bg: #495057;
+  --btn-disabled-text: #adb5bd;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Inter', 'Ubuntu', sans-serif;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.1s ease-out, color 0.1s ease-out;
+  /* Improve accessibility */
+  scroll-behavior: smooth;
+  /* Performance optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.4s ease-out;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.4s ease-out;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.4s ease-out;
+}
+
+.animate-scale {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.animate-bounce {
+  animation: bounce 0.6s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-normal);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+.hover-scale {
+  transition: transform var(--transition-fast);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Loading Shimmer Effect */
+.shimmer {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--border-color) 50%, var(--bg-secondary) 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Animation initialization - ensure animations work on page refresh */
+.animate-on-load {
+  animation-play-state: running !important;
+}
+
+/* Force animation restart on page load */
+@keyframes restart-animation {
+  0% { opacity: 0.99; }
+  100% { opacity: 1; }
+}
+
+.page-loaded * {
+  animation-name: restart-animation;
+  animation-duration: 0.01s;
+  animation-fill-mode: forwards;
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus styles for better accessibility */
+*:focus {
+  outline: none;
+}
+
+/* Custom focus styles for interactive elements */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 1px solid var(--primary-color);
+  outline-offset: 1px;
+}
+
+/* Remove focus outline for mouse users, keep for keyboard users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Performance optimization for theme switching */
+.theme-switch,
+.theme-switch * {
+  will-change: transform, opacity;
+}
+
+/* Fast theme transitions for common elements */
+header, nav, main, footer, .card, .btn {
+  transition:
+    background-color 0.1s ease-out,
+    color 0.1s ease-out,
+    border-color 0.1s ease-out;
+}
+
+
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Show screen reader content when focused */
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Light Mode - Additional Text Visibility Fixes */
+[data-theme="light"] {
+  /* Ensure status badges with dark backgrounds have white text */
+  .status-confirmed,
+  .status-pending,
+  .status-cancelled,
+  .status-completed,
+  .appointment-status,
+  .badge-primary,
+  .badge-success,
+  .badge-warning,
+  .badge-danger,
+  .badge-info {
+    color: var(--white) !important;
+  }
+
+  /* Ensure navigation items with hover states are visible */
+  .nav-item:hover,
+  .nav-link:hover,
+  .dropdown-item:hover {
+    color: var(--primary-color) !important;
+  }
+
+  /* Ensure form elements with dark backgrounds have proper text */
+  .form-control:focus,
+  .form-select:focus,
+  .form-check-input:checked {
+    color: var(--text-primary) !important;
+  }
+
+  /* Ensure alert/notification elements are visible */
+  .alert-primary,
+  .alert-success,
+  .alert-warning,
+  .alert-danger,
+  .alert-info {
+    color: var(--text-primary) !important;
+  }
+
+  /* Ensure card headers with primary backgrounds have white text */
+  .card-header-primary,
+  .card-header.bg-primary,
+  .card-footer-primary,
+  .card-footer.bg-primary {
+    color: var(--white) !important;
+  }
+
+  /* Ensure table headers with dark backgrounds have white text */
+  .table-primary th,
+  .table-dark th,
+  .table-success th,
+  .table-warning th,
+  .table-danger th,
+  .table-info th {
+    color: var(--white) !important;
+  }
+}

@@ -1,0 +1,1909 @@
+/* Booking Modal Styles */
+
+.booking-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.booking-modal {
+  background: var(--bg-primary);
+  border-radius: 24px;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: visible;
+  animation: slideUp 0.4s ease-out;
+  position: relative;
+  margin-top: 80px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Header */
+.booking-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 30px;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(135deg, #4a6741 0%, #3d5436 100%);
+  color: #ffffff !important;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+}
+
+.booking-modal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(74, 103, 65, 0.9) 0%, rgba(61, 84, 54, 0.95) 100%);
+  z-index: 1;
+}
+
+.booking-modal-header * {
+  position: relative;
+  z-index: 2;
+}
+
+.booking-modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.modal-close-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ffffff !important;
+  font-size: 1.3rem;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: rotate(90deg) scale(1.1);
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+
+
+/* Modal Content */
+.booking-modal-content {
+  padding: 30px;
+  max-height: 60vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Special handling for appointment step with dropdown open */
+.booking-modal-content:has(.slot-dropdown-container .slot-dropdown-menu) {
+  overflow-y: visible;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+}
+
+.booking-step {
+  animation: slideInRight 0.4s ease-out;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure appointment step has proper stacking context */
+.booking-step.step-2 {
+  z-index: 100005;
+  position: relative;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.step-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.step-header svg {
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+
+.step-header h3 {
+  margin: 0 0 8px 0;
+  color: var(--dark-color);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.step-header p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 24px;
+}
+
+/* Special spacing for time slots form group to prevent overlap */
+.form-group:has(.slot-dropdown-container) {
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 100010;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--dark-color);
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.1);
+}
+
+.form-group input.pre-filled {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-color: #28a745;
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+.form-group input.valid,
+.form-group select.valid,
+.form-group textarea.valid {
+  border-color: #28a745;
+  background-color: #f8fff9;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Field Messages */
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: #fff5f5;
+  border: 1px solid #f8d7da;
+  border-radius: 6px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.field-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  border-left: 3px solid var(--primary-color);
+  font-style: italic;
+}
+
+/* Dark mode field hint */
+[data-theme="dark"] .field-hint {
+  color: var(--text-secondary);
+  background-color: rgba(123, 167, 123, 0.15);
+  border-color: rgba(123, 167, 123, 0.3);
+  border-left-color: var(--primary-color);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slot Message */
+.slot-message {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 10px 0;
+  border: 1px solid #e9ecef;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Modal Footer */
+.booking-modal-footer {
+  padding: 20px 30px;
+  border-top: 1px solid #e9ecef;
+  background: #f8f9fa;
+  border-radius: 0 0 24px 24px;
+}
+
+/* Ensure footer buttons are visible against light background */
+.booking-modal-footer .btn-secondary {
+  background: #6c757d !important;
+  color: white !important;
+  border: 2px solid #6c757d !important;
+}
+
+.footer-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-buttons .btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.footer-buttons .btn svg {
+  color: inherit !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  flex-shrink: 0;
+}
+
+.footer-buttons .btn span,
+.footer-buttons .btn {
+  color: inherit !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Remove grey button overrides - use design system */
+
+/* Removed grey button overrides - using design system */
+
+.btn-primary {
+  background: var(--primary-color) !important;
+  color: white !important;
+  border: 2px solid var(--primary-color) !important;
+}
+
+.btn-primary,
+.btn-primary *,
+.btn-primary span {
+  color: white !important;
+}
+
+.btn-primary svg {
+  color: white !important;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+  transform: translateY(-1px);
+}
+
+.btn-primary:hover:not(:disabled),
+.btn-primary:hover:not(:disabled) *,
+.btn-primary:hover:not(:disabled) span {
+  color: white !important;
+}
+
+.btn-primary:hover:not(:disabled) svg {
+  color: white !important;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Ensure buttons are always visible */
+.footer-buttons .btn {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+/* Force button text visibility */
+.footer-buttons .btn-primary {
+  background: var(--primary-color) !important;
+  color: white !important;
+  border: 2px solid var(--primary-color) !important;
+}
+
+.footer-buttons .btn-primary,
+.footer-buttons .btn-primary *,
+.footer-buttons .btn-primary span,
+.footer-buttons .btn-primary text {
+  color: white !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.footer-buttons .btn-primary svg {
+  color: white !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Use design system for footer buttons - Override global styles */
+.booking-modal .footer-buttons .btn-back {
+  /* Back button with transparent/dark bg and dark green text */
+  background: rgba(0, 0, 0, 0.1) !important;
+  color: var(--primary-color) !important;
+  border: 2px solid rgba(0, 0, 0, 0.2) !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.booking-modal .footer-buttons .btn-back:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.15) !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-hover) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.footer-buttons .btn-primary {
+  /* Primary button uses design system */
+  background: var(--btn-primary-bg);
+  color: var(--white);
+  border: 2px solid var(--btn-primary-bg);
+}
+
+/* Submit Message */
+.submit-message {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
+  animation: slideDown 0.3s ease-out;
+}
+
+.submit-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.submit-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Slot Dropdown Styles */
+.slot-dropdown-container {
+  position: relative;
+  width: 100%;
+  z-index: 100010;
+}
+
+.slot-dropdown-trigger {
+  width: 100%;
+  padding: 14px 16px;
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.slot-dropdown-trigger:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.1);
+}
+
+.slot-dropdown-trigger.open {
+  border-color: var(--primary-color);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.1);
+}
+
+.dropdown-trigger-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--dark-color);
+}
+
+.dropdown-trigger-content span {
+  flex: 1;
+  font-weight: 500;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  color: var(--text-primary, #333);
+  font-size: 0.8rem;
+}
+
+.dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.slot-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid var(--primary-color);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 12px 35px rgba(74, 103, 65, 0.25);
+  z-index: 100015;
+  max-height: 300px;
+  overflow: hidden;
+  animation: slideDown 0.3s ease-out;
+  margin-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+
+.dropdown-content {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.slot-period-group {
+  margin-bottom: 8px;
+}
+
+.period-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 8px;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  position: static; /* Changed from sticky to prevent overlap */
+  z-index: 1;
+}
+
+.period-title {
+  font-weight: 600;
+  color: var(--dark-color);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.period-count {
+  font-size: 0.8rem;
+  color: #6c757d;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.period-slots {
+  padding: 0 8px;
+}
+
+.slot-dropdown-item {
+  width: 100%;
+  padding: 12px 16px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.slot-dropdown-item:hover:not(:disabled) {
+  background: #f8f9fa;
+  transform: translateX(4px);
+}
+
+.slot-dropdown-item.selected {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border-left: 4px solid var(--primary-color);
+}
+
+.slot-dropdown-item.booked {
+  background: #f8f9fa;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.slot-dropdown-item.booked .slot-time {
+  color: #6c757d !important;
+}
+
+.slot-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slot-time-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.slot-time {
+  font-weight: 600;
+  color: var(--dark-color);
+  font-size: 0.95rem;
+}
+
+.slot-location {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.slot-status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.slot-status-badge.available {
+  background: #d4edda;
+  color: #155724;
+}
+
+.slot-status-badge.booked {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Appointment Summary */
+.appointment-summary {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+.summary-section {
+  margin-bottom: 24px;
+}
+
+.summary-section:last-child {
+  margin-bottom: 0;
+}
+
+.summary-section h4 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  color: var(--dark-color);
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.summary-item svg {
+  color: var(--primary-color);
+  flex-shrink: 0;
+  min-width: 16px;
+}
+
+.summary-item span {
+  flex: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+.summary-message {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+  color: var(--dark-color);
+  line-height: 1.6;
+  font-style: italic;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .booking-modal-overlay {
+    padding: 15px;
+    align-items: flex-start;
+    padding-top: 90px;
+  }
+
+  .booking-modal {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100vh - 110px);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .booking-modal-header {
+    padding: 20px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--primary-color);
+    border-radius: 20px 20px 0 0;
+  }
+
+  .booking-modal-header h2 {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+
+  .modal-close-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    touch-action: manipulation;
+  }
+
+
+
+  .booking-modal-content {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .step-header {
+    margin-bottom: 20px;
+  }
+
+  .step-header h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .step-header p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* Enhanced form inputs for mobile */
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 16px 14px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    touch-action: manipulation;
+    transition: all 0.2s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.1);
+    transform: scale(1.02);
+  }
+
+  /* Improved slot dropdown for mobile */
+  .slot-dropdown-trigger {
+    padding: 16px;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    touch-action: manipulation;
+    transition: all 0.2s ease;
+  }
+
+  .slot-dropdown-trigger:active {
+    transform: scale(0.98);
+  }
+
+  .slot-dropdown-menu {
+    max-height: 280px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .dropdown-content {
+    max-height: 240px;
+  }
+
+  .slot-dropdown-item {
+    padding: 16px;
+    border-radius: 0;
+    touch-action: manipulation;
+    transition: all 0.2s ease;
+  }
+
+  .slot-dropdown-item:active {
+    transform: scale(0.98);
+  }
+
+  .booking-modal-footer {
+    padding: 16px;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-light);
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .footer-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-buttons .btn {
+    flex: none;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    touch-action: manipulation;
+    transition: all 0.2s ease;
+    height: 36px;
+    min-width: 90px;
+    max-width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-buttons .btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Enhanced button styling for tablet view */
+  .footer-buttons .btn-primary {
+    background: var(--btn-primary-bg) !important;
+    color: var(--white) !important;
+    border: 2px solid var(--btn-primary-bg) !important;
+    box-shadow: 0 3px 10px rgba(var(--primary-color-rgb), 0.3);
+  }
+
+  .booking-modal .footer-buttons .btn-back {
+    background: rgba(0, 0, 0, 0.1) !important;
+    color: var(--primary-color) !important;
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .booking-modal .footer-buttons .btn-back:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-modal-overlay {
+    padding: 10px;
+    padding-top: 85px;
+  }
+
+  .booking-modal {
+    max-height: calc(100vh - 105px);
+    border-radius: 18px;
+  }
+
+  .booking-modal-header {
+    padding: 16px 20px;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .booking-modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-close-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+
+
+  .booking-modal-content {
+    padding: 16px;
+  }
+
+  .step-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .step-header p {
+    font-size: 0.85rem;
+  }
+
+  /* Smaller mobile form optimizations */
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 12px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .slot-dropdown-trigger {
+    padding: 14px 12px;
+    border-radius: 10px;
+  }
+
+  .slot-dropdown-menu {
+    max-height: 250px;
+    border-radius: 10px;
+  }
+
+  .dropdown-content {
+    max-height: 200px;
+  }
+
+  .slot-dropdown-item {
+    padding: 14px 12px;
+  }
+
+  .slot-item-content {
+    gap: 8px;
+  }
+
+  .slot-time-info {
+    gap: 4px;
+  }
+
+  .slot-time {
+    font-size: 0.9rem;
+  }
+
+  .slot-location {
+    font-size: 0.8rem;
+  }
+
+  .slot-status-badge {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  /* Appointment summary mobile */
+  .appointment-summary {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .summary-section {
+    margin-bottom: 16px;
+  }
+
+  .summary-section h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .summary-item {
+    padding: 8px 0;
+    font-size: 0.9rem;
+  }
+
+  .summary-item svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .summary-message {
+    padding: 12px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+
+  /* Footer mobile optimization */
+  .booking-modal-footer {
+    padding: 10px 16px;
+    border-radius: 0 0 18px 18px;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-light);
+  }
+
+  .footer-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-buttons .btn {
+    flex: none;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    justify-content: center;
+    border-radius: 6px;
+    height: 36px;
+    min-width: 80px;
+    max-width: 120px;
+    touch-action: manipulation;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-buttons .btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Primary button (Next/Submit) should be more prominent */
+  .footer-buttons .btn-primary {
+    background: var(--btn-primary-bg) !important;
+    color: var(--white) !important;
+    border: 2px solid var(--btn-primary-bg) !important;
+    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.2);
+  }
+
+  /* Back button should match desktop */
+  .booking-modal .footer-buttons .btn-back {
+    background: rgba(0, 0, 0, 0.1) !important;
+    color: var(--primary-color) !important;
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .booking-modal .footer-buttons .btn-back:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Error and validation messages */
+  .field-error {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+
+  .submit-message {
+    font-size: 0.9rem;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+  }
+}
+
+/* Login Required Content */
+.login-required-content {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.login-icon {
+  color: var(--primary-color);
+  margin-bottom: 24px;
+}
+
+.login-required-content h3 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Dark Mode Styles */
+[data-theme="dark"] .booking-modal {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xl);
+}
+
+[data-theme="dark"] .booking-modal-overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .booking-modal-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+
+
+
+
+
+/* Ensure inactive step numbers have proper dark background */
+[data-theme="dark"] .step-number {
+  background: var(--bg-tertiary) !important;
+  color: var(--text-muted) !important;
+  border: 3px solid var(--bg-primary) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .booking-modal-content {
+  background: var(--bg-primary);
+}
+
+[data-theme="dark"] .step-header h3 {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .step-header p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .form-group label {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group select:focus,
+[data-theme="dark"] .form-group textarea:focus {
+  border-color: var(--primary-color);
+  background: var(--bg-primary);
+}
+
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .validation-error {
+  color: var(--danger-color);
+}
+
+[data-theme="dark"] .slot-message {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .no-slots-container {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .no-slots-suggestions h4 {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .no-slots-suggestions ul li {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .slot-dropdown-trigger {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .slot-dropdown-trigger:hover {
+  border-color: var(--primary-color);
+  background: var(--bg-primary);
+}
+
+[data-theme="dark"] .dropdown-trigger-content {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .dropdown-trigger-content span {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .dropdown-arrow {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .slot-dropdown-menu {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+}
+
+
+
+[data-theme="dark"] .slot-item {
+  border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .slot-item:hover {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .slot-item.selected {
+  background: var(--primary-color) !important;
+  color: var(--white) !important;
+}
+
+[data-theme="dark"] .slot-item.selected .slot-time,
+[data-theme="dark"] .slot-item.selected .slot-doctor,
+[data-theme="dark"] .slot-item.selected .slot-location {
+  color: var(--white) !important;
+}
+
+[data-theme="dark"] .slot-time {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .slot-doctor {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .slot-location {
+  color: var(--text-muted);
+}
+
+/* Fix slot dropdown item styling in dark mode */
+[data-theme="dark"] .slot-dropdown-item {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .slot-dropdown-item:hover:not(:disabled) {
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  transform: translateX(4px);
+}
+
+[data-theme="dark"] .slot-dropdown-item:hover:not(:disabled) .slot-time,
+[data-theme="dark"] .slot-dropdown-item:hover:not(:disabled) .slot-doctor,
+[data-theme="dark"] .slot-dropdown-item:hover:not(:disabled) .slot-location {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .slot-dropdown-item.selected {
+  background: var(--primary-color) !important;
+  color: var(--white) !important;
+  border-left: 4px solid var(--white);
+}
+
+[data-theme="dark"] .slot-dropdown-item.selected .slot-time,
+[data-theme="dark"] .slot-dropdown-item.selected .slot-doctor,
+[data-theme="dark"] .slot-dropdown-item.selected .slot-location {
+  color: var(--white) !important;
+}
+
+[data-theme="dark"] .slot-dropdown-item .slot-time {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .slot-dropdown-item .slot-doctor {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .slot-dropdown-item .slot-location {
+  color: var(--text-muted);
+}
+
+/* Period headers and slot groups in dark mode */
+[data-theme="dark"] .slot-period-group {
+  border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .period-header {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .period-title {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .period-count {
+  color: var(--text-secondary) !important;
+}
+
+/* Slot status badges in dark mode */
+[data-theme="dark"] .slot-status-badge.available {
+  background: var(--success-color);
+  color: var(--white);
+  border: 1px solid var(--success-color);
+}
+
+[data-theme="dark"] .slot-status-badge.booked {
+  background: #dc3545;
+  color: #ffffff;
+  border: 1px solid #dc3545;
+}
+
+[data-theme="dark"] .slot-dropdown-item.booked {
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .slot-dropdown-item.booked .slot-time {
+  color: var(--text-secondary) !important;
+}
+
+/* Summary section styling in dark mode */
+[data-theme="dark"] .summary-item {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .summary-item span {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .summary-message {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+/* Submit message styling */
+[data-theme="dark"] .submit-message {
+  color: var(--text-primary);
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+[data-theme="dark"] .submit-message.success {
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid var(--success-color);
+  color: var(--success-color);
+}
+
+[data-theme="dark"] .submit-message.error {
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid var(--danger-color);
+  color: var(--danger-color);
+}
+
+[data-theme="dark"] .appointment-summary {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .summary-section h4 {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+[data-theme="dark"] .summary-item {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .summary-value {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .booking-modal-footer {
+  background: var(--bg-primary);
+  border-top: 2px solid var(--border-color);
+}
+
+/* Tablet button improvements for both light and dark modes */
+@media (max-width: 768px) {
+  /* Light mode tablet buttons */
+  .footer-buttons .btn-primary {
+    background: var(--btn-primary-bg) !important;
+    color: var(--white) !important;
+    border: 2px solid var(--btn-primary-bg) !important;
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.3);
+  }
+
+  .booking-modal .footer-buttons .btn-back {
+    background: rgba(0, 0, 0, 0.1) !important;
+    color: var(--primary-color) !important;
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .booking-modal .footer-buttons .btn-back:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Dark mode tablet buttons */
+  [data-theme="dark"] .footer-buttons .btn-primary {
+    background: var(--btn-primary-bg) !important;
+    color: var(--white) !important;
+    border: 2px solid var(--btn-primary-bg) !important;
+    box-shadow: 0 4px 12px rgba(65, 117, 252, 0.3);
+  }
+
+  [data-theme="dark"] .booking-modal .footer-buttons .btn-back {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--primary-color) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+  }
+
+  [data-theme="dark"] .booking-modal .footer-buttons .btn-back:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+/* Additional mobile button fixes for both light and dark modes */
+@media (max-width: 480px) {
+  /* Light mode mobile back button - Use desktop styling */
+  .booking-modal .footer-buttons .btn-back {
+    background: rgba(0, 0, 0, 0.1) !important;
+    color: var(--primary-color) !important;
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .booking-modal .footer-buttons .btn-back:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Dark mode mobile back button - Use desktop styling */
+  [data-theme="dark"] .booking-modal .footer-buttons .btn-back {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--primary-color) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+  }
+
+  [data-theme="dark"] .booking-modal .footer-buttons .btn-back:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+[data-theme="dark"] .btn-primary {
+  background: var(--primary-color) !important;
+  color: var(--white) !important;
+  border: 2px solid var(--primary-color) !important;
+}
+
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .btn-primary *,
+[data-theme="dark"] .btn-primary span {
+  color: var(--white) !important;
+}
+
+[data-theme="dark"] .btn-primary svg {
+  color: var(--white) !important;
+}
+
+[data-theme="dark"] .btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+[data-theme="dark"] .btn-primary:hover:not(:disabled),
+[data-theme="dark"] .btn-primary:hover:not(:disabled) *,
+[data-theme="dark"] .btn-primary:hover:not(:disabled) span {
+  color: var(--white) !important;
+}
+
+[data-theme="dark"] .btn-primary:hover:not(:disabled) svg {
+  color: var(--white) !important;
+}
+
+/* Light mode button icons should be white */
+[data-theme="light"] .btn-primary svg,
+[data-theme="light"] .btn-success svg,
+[data-theme="light"] .btn-warning svg,
+[data-theme="light"] .btn-danger svg,
+[data-theme="light"] .btn-info svg {
+  color: #ffffff !important;
+}
+
+/* Dark theme uses design system - no overrides needed for btn-secondary */
+
+[data-theme="dark"] .btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .btn-outline:hover:not(:disabled) {
+  background: var(--bg-secondary);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* Pre-filled field styling for dark mode */
+[data-theme="dark"] .form-group input.pre-filled,
+[data-theme="dark"] .form-group textarea.pre-filled {
+  background: var(--bg-tertiary);
+  border-color: var(--primary-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-group input.valid,
+[data-theme="dark"] .form-group textarea.valid {
+  border-color: var(--success-color);
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .form-group input.error,
+[data-theme="dark"] .form-group textarea.error {
+  border-color: var(--danger-color);
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .field-error {
+  color: var(--danger-color);
+  background-color: rgba(244, 67, 54, 0.1);
+  border-color: rgba(244, 67, 54, 0.2);
+}
+
+[data-theme="dark"] .error-icon {
+  color: var(--danger-color);
+}
+
+/* Loading spinner for dark mode */
+[data-theme="dark"] .loading-spinner {
+  color: var(--primary-color);
+}
+
+/* Contact options styling for dark mode */
+[data-theme="dark"] .contact-options .btn {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .contact-options .btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .contact-options .btn-primary {
+  background: var(--primary-color);
+  color: var(--white);
+  border: 1px solid var(--primary-color);
+}
+
+[data-theme="dark"] .contact-options .btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+/* Light Mode - Text Visibility Fixes for Booking Modal */
+[data-theme="light"] {
+  /* Ensure modal header text is visible */
+  .booking-modal-header h2 {
+    color: #ffffff !important;
+  }
+
+
+
+  /* Ensure form labels are visible */
+  .form-group label {
+    color: var(--text-primary) !important;
+  }
+
+  /* Ensure button text is visible */
+  .btn-primary,
+  .btn-primary *,
+  .btn-primary span {
+    color: var(--white) !important;
+  }
+
+  /* Design system handles button styling */
+
+  /* Ensure slot dropdown text is visible */
+  .slot-dropdown-button {
+    color: var(--text-primary) !important;
+  }
+
+  .slot-option {
+    color: var(--text-primary) !important;
+  }
+
+  /* Ensure appointment summary text is visible */
+  .appointment-summary {
+    color: var(--text-primary) !important;
+  }
+
+  .summary-item {
+    color: var(--text-secondary) !important;
+  }
+
+  .summary-value {
+    color: var(--text-primary) !important;
+  }
+
+  /* Ensure status messages are visible */
+  .submit-message.success {
+    color: #155724 !important;
+    background-color: #d4edda !important;
+  }
+
+  .submit-message.error {
+    color: #721c24 !important;
+    background-color: #f8d7da !important;
+  }
+
+  /* Ensure slot status badges are visible */
+  .slot-status-badge {
+    color: var(--white) !important;
+  }
+
+  /* Make available status badge more visible in light mode */
+  .slot-status-badge.available {
+    background: #28a745 !important;
+    color: var(--white) !important;
+    border: 1px solid #28a745 !important;
+  }
+
+  /* Ensure period headers are visible */
+  .period-title {
+    color: var(--text-primary) !important;
+  }
+
+  .period-count {
+    color: var(--text-secondary) !important;
+  }
+}
+
+.login-required-content p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--dark-color);
+  font-weight: 500;
+}
+
+.benefit-item svg {
+  color: #28a745;
+  flex-shrink: 0;
+}
+
+.login-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.login-actions .btn {
+  padding: 12px 24px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  .login-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .login-actions .btn {
+    width: 100%;
+  }
+}
+
+/* No Slots Available Styling */
+.no-slots-container {
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.no-slots-suggestions {
+  margin-top: 20px;
+  text-align: left;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-slots-suggestions h4 {
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.no-slots-suggestions ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.no-slots-suggestions li {
+  padding: 8px 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  position: relative;
+  padding-left: 20px;
+}
+
+.no-slots-suggestions li::before {
+  content: '•';
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.contact-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+}
+
+@media (max-width: 480px) {
+  .contact-options {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contact-options .btn {
+    width: 100%;
+  }
+}
+
+.slot-info {
+  margin-top: 20px;
+  padding: 16px;
+  background: #e8f5e8;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.slot-info p {
+  margin: 0 0 12px 0;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.slot-info ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.slot-info li {
+  color: #333;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.slot-info strong {
+  color: var(--primary-color);
+}
+
+.date-info {
+  display: block;
+  margin-top: 6px;
+  color: #666;
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.3;
+}
