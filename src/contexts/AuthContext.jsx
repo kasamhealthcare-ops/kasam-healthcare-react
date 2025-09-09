@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
 
             try {
               // Check if backend is accessible first
-              const serverUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace('/api', '')
+              const serverUrl = import.meta.env.VITE_API_URL.replace('/api', '')
               const healthCheck = await Promise.race([
                 fetch(`${serverUrl}/health`), // Use /health instead of /api/health
                 new Promise((_, reject) => setTimeout(() => reject(new Error('Health check timeout')), 3000))

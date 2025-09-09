@@ -213,7 +213,8 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
         return
       }
 
-      const apiUrl = `http://localhost:5000/api/slots/available?date=${selectedDate}`
+      const baseUrl = import.meta.env.VITE_API_URL
+      const apiUrl = `${baseUrl}/slots/available?date=${selectedDate}`
 
       const response = await fetch(apiUrl, {
         headers: {

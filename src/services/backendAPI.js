@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // API Configuration
 const API_CONFIG = {
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: parseInt(import.meta.env.VITE_API_TIMEOUT) || 10000,
   debug: import.meta.env.VITE_DEBUG_MODE === 'true'
 }
@@ -336,7 +336,8 @@ export const reviewsAPI = {
 // Health check
 export const healthCheck = async () => {
   try {
-    const response = await axios.get('http://localhost:5000/health', { timeout: 5000 })
+    const serverUrl = import.meta.env.VITE_API_URL.replace('/api', '')
+    const response = await axios.get(`${serverUrl}/health`, { timeout: 5000 })
     return response.data
   } catch {
     throw new Error('Backend server is not available')
