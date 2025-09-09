@@ -684,7 +684,7 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
                   value={formData.date}
                   onChange={handleChange}
                   min={new Date().toISOString().split('T')[0]}
-                  max={new Date(new Date().setMonth(new Date().getMonth() + 6)).toISOString().split('T')[0]}
+                  max={new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0]}
                 />
                 <small className="date-info">
                   Select your preferred appointment date. Available slots will be shown below.
