@@ -684,7 +684,7 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
                   value={formData.date}
                   onChange={handleChange}
                   min={new Date().toISOString().split('T')[0]}
-                  max={new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0]}
+                  max={new Date(new Date().setDate(new Date().getDate() + 15)).toISOString().split('T')[0]}
                 />
                 <small className="date-info">
                   Select your preferred appointment date. Available slots will be shown below.
@@ -753,13 +753,13 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
                         </button>
                       </div>
                       <div className="slot-info">
-                        <p><strong>Available Time Slots:</strong></p>
+                        <p><strong>Available Time Slots (15-minute intervals):</strong></p>
                         <ul>
                           <li><strong>Ghodasar:</strong> 7:00-8:30 AM, 9:00 AM-12:00 PM, 1:00-2:00 PM, 8:30-10:30 PM (Mon-Sat)</li>
                           <li><strong>Vastral:</strong> 4:00-7:00 PM (Mon-Sat)</li>
                           <li><strong>Gandhinagar:</strong> 12:00-5:00 PM (Sunday only)</li>
                         </ul>
-                        <p><strong>Note:</strong> Ghodasar and Vastral are closed on Sundays. Only Gandhinagar is open on Sundays.</p>
+                        <p><strong>Note:</strong> Each slot is 15 minutes. Ghodasar and Vastral are closed on Sundays. Only Gandhinagar is open on Sundays.</p>
                       </div>
                     </div>
                   </div>

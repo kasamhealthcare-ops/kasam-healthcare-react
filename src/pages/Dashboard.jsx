@@ -219,7 +219,7 @@ const Dashboard = () => {
     return `${displayHour}:${minutes} ${ampm}`
   }
 
-  const formatTimeRange = (startTime, duration = 30) => {
+  const formatTimeRange = (startTime, duration = 15) => {
     if (!startTime) return ''
 
     // Parse start time
