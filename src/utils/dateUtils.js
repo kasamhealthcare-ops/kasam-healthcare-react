@@ -5,6 +5,13 @@
 
 // IST timezone offset (UTC+5:30)
 const IST_OFFSET = 5.5 * 60 * 60 * 1000
+export const SLOT_WINDOW_DAYS = 30
+
+export const getBookingDate = (daysAhead = 0, now = new Date()) => {
+  const day = new Date(now.getTime() + IST_OFFSET)
+  day.setUTCDate(day.getUTCDate() + daysAhead)
+  return day.toISOString().slice(0, 10)
+}
 
 /**
  * Get current date/time in IST
