@@ -4,6 +4,7 @@ import { X, User, Mail, Phone, Calendar, Clock, MessageSquare, CheckCircle, Arro
 import { useAuth } from '../contexts/AuthContext'
 import { useDoctor } from '../contexts/DoctorContext'
 import { useNavigate } from 'react-router-dom'
+import { getBookingDate, SLOT_WINDOW_DAYS } from '../utils/dateUtils'
 import './BookingModal.css'
 
 const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null }) => {
@@ -24,7 +25,7 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
     email: '',
     phone: '',
     service: rescheduleData?.service || '',
-    date: new Date().toISOString().split('T')[0], // Set current date as default
+    date: getBookingDate(),
     time: '',
     message: isReschedule ? 'Rescheduling existing appointment' : ''
   })
@@ -109,7 +110,7 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
         name: '',
         email: '',
         phone: '',
-        date: new Date().toISOString().split('T')[0], // Set current date as default
+        date: getBookingDate(),
         time: '',
         service: 'Homoepathic Medicine',
         message: ''
@@ -141,7 +142,7 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
       setFormData(initialFormData)
 
       // Automatically fetch slots for current date
-      const currentDate = new Date().toISOString().split('T')[0]
+      const currentDate = getBookingDate()
       fetchAvailableSlots(currentDate)
     }
   }, [isOpen, isAuthenticated, user])
@@ -683,11 +684,11 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
-                  min={new Date().toISOString().split('T')[0]}
-                  max={new Date(new Date().setDate(new Date().getDate() + 15)).toISOString().split('T')[0]}
+                  min={getBookingDate()}
+                  max={getBookingDate(SLOT_WINDOW_DAYS - 1)}
                 />
                 <small className="date-info">
-                  Select your preferred appointment date. Available slots will be shown below.
+                  Select a date within 30 days, including today. Available slots will be shown below.
                 </small>
               </div>
 
@@ -720,9 +721,7 @@ const BookingModal = ({ isOpen, onClose, rescheduleData = null, onSuccess = null
                         <button
                           onClick={() => {
                             // Try tomorrow
-                            const tomorrow = new Date()
-                            tomorrow.setDate(tomorrow.getDate() + 1)
-                            const tomorrowStr = tomorrow.toISOString().split('T')[0]
+                            const tomorrowStr = getBookingDate(1)
                             setFormData(prev => ({ ...prev, date: tomorrowStr }))
                             fetchAvailableSlots(tomorrowStr)
                           }}
